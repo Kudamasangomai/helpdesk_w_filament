@@ -9,11 +9,12 @@ use App\Models\Repairs;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\RepairsResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\RepairsResource\RelationManagers;
-use Filament\Forms\Components\Select;
 
 class RepairsResource extends Resource
 {
@@ -30,23 +31,22 @@ class RepairsResource extends Resource
                 ->searchable(),
                 Select::make('fault_id')
                 ->relationship('fault','name')
-                ->searchable()
+                ->searchable(),
+          
+                
             ]);
     }
-
-    // $table->id()->startingValue(1000000);
-    // $table->foreignId('asset_id')->constrained('assets')->cascadeOnDelete();
-    // $table->foreignId('fault_id')->constrained('faults')->cascadeOnDelete();
-    // $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-    // $table->enum('status',['Open','Work In Progress','Completed'])->default('Open');
-    // $table->integer('closeby')->unsigned()->default(0);
-    // $table->string('workdone');
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('id'),
+                Tables\Columns\TextColumn::make('asset.assetno'),
+                Tables\Columns\TextColumn::make('fault.name'),
+                TextColumn::make('status')
+                ->badge(),
+                TextColumn::make('created_at')
             ])
             ->filters([
                 //
