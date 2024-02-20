@@ -60,4 +60,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Repair::class);
  
     }
+
+    public function assignedrepair()
+    {
+        return $this->belongsToMany(Repair::class);
+ 
+    }
 }

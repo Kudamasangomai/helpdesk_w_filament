@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\RepairStatus;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Repair;
@@ -32,6 +33,14 @@ class RepairsResource extends Resource
                 Select::make('fault_id')
                 ->relationship('fault','name')
                 ->searchable(),
+                Select::make('status')
+                ->options(RepairStatus::class)
+                ->rules(['required']),
+                // Select::make('users_id')
+                // ->label('Assigned User')
+                // ->multiple()
+                // ->relationship('user','name')
+
           
                 
             ]);
@@ -44,8 +53,11 @@ class RepairsResource extends Resource
                 Tables\Columns\TextColumn::make('id'),
                 Tables\Columns\TextColumn::make('asset.assetno'),
                 Tables\Columns\TextColumn::make('fault.name'),
-                TextColumn::make('status')
+                Tables\Columns\TextColumn::make('user.name')
+                ->label('Created By'),
+                Tables\Columns\TextColumn::make('status')
                 ->badge(),
+                Tables\Columns\TextColumn::make('assigneduser.name'),
                 TextColumn::make('created_at')
             ])
             ->filters([

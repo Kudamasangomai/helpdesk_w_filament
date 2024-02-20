@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\RepairStatus;
 use App\Models\User;
 use App\Models\asset;
 use App\Models\fault;
@@ -12,9 +13,13 @@ class Repair extends Model
 {
     use HasFactory;
 
-    public function users()
+    public function assigneduser()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsto(User::class);
+    }
+    public function user()
+    {
+        return $this->belongsto(User::class);
     }
     public function asset()
     {
@@ -28,7 +33,10 @@ class Repair extends Model
     public function closedby()
     {
         return $this->belongsTo(User::class,'closeby');
-    } 
-    
+    }     
+
+    protected $casts = [
+        'status' =>  RepairStatus::class,
+    ];
 
 }

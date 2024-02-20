@@ -21,7 +21,7 @@ class assetFactory extends Factory
         $users = collect(User::all()->modelKeys());
     
         return [
-            'assetno' =>'F' . $this->faker->numberBetween(900,999),
+            'assetno' =>'F' . $this->faker->numberBetween(100,700),
             'user_id' => $users->random(),
 
         ];
