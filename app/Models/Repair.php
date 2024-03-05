@@ -13,9 +13,9 @@ class Repair extends Model
 {
     use HasFactory;
 
-    public function assigneduser()
+    public function assignedto()
     {
-        return $this->belongsto(User::class);
+        return $this->belongsto(User::class ,'assigneduser_id');
     }
     public function user()
     {

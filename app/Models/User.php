@@ -57,7 +57,7 @@ class User extends Authenticatable
 
     public function repair()
     {
-        return $this->belongsToMany(Repair::class);
+        return $this->belongsToMany(Repair::class );
  
     }
 
