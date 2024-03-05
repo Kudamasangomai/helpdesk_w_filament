@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('fault_id')->constrained('faults')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->enum('status',['Open','Work_In_Progress','Completed'])->default('Open');
-            $table->integer('assigneduser')->unsigned()->default(0);
+            $table->integer('assigneduser_id')->constrained('users')->cascadeOnDelete();
             $table->integer('closeby')->unsigned()->default(0);
             $table->string('workdone');
             $table->timestamps();

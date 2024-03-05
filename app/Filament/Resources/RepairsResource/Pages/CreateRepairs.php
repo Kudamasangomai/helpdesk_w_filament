@@ -14,7 +14,7 @@ class CreateRepairs extends CreateRecord
     {
         $data['user_id'] = auth()->id();
         $data['workdone'] = 'none';
-     
+        $data['assigneduser_id'] = 0;
         return $data;
     }
 }
