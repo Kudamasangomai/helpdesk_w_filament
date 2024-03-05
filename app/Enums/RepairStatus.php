@@ -39,7 +39,7 @@ enum RepairStatus: string implements HasLabel ,HasColor ,HasIcon
     public function getIcon(): ?string
     {
         return match ($this) {
-            self::Open => 'heroicon-m-pencil',
+            self::Open => 'heroicon-m-book-open',
             self::Work_In_Progress=> 'heroicon-m-play',
             self::Completed => 'heroicon-m-check',
         };
