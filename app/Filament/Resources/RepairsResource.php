@@ -10,6 +10,7 @@ use App\Models\Repairs;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Enums\RepairStatus;
+use Filament\Actions\ViewAction;
 use Filament\Resources\Resource;
 use Filament\Actions\SelectAction;
 use Filament\Tables\Actions\Action;
@@ -21,6 +22,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\RepairsResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\RepairsResource\RelationManagers;
+use Filament\Pages\Page;
 
 class RepairsResource extends Resource
 {
@@ -53,6 +55,7 @@ class RepairsResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+      
             ->columns([
                 Tables\Columns\TextColumn::make('id')
                     ->label('Jobcard number')
@@ -92,6 +95,7 @@ class RepairsResource extends Resource
                             ->success()
                             ->send();
                     }),
+                Tables\Actions\ViewAction::make()->label(''),
                 Tables\Actions\EditAction::make()->label(''),
                 Tables\Actions\DeleteAction::make()->label(''),
 
@@ -115,6 +119,7 @@ class RepairsResource extends Resource
     {
         return [
             'index' => Pages\ListRepairs::route('/'),
+            'view' => Pages\ViewRepair::route('/{record}'),
             'create' => Pages\CreateRepairs::route('/create'),
             'edit' => Pages\EditRepairs::route('/{record}/edit'),
         ];
