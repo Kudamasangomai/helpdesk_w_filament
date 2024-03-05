@@ -28,7 +28,13 @@ class RepairsResource extends Resource
 {
     protected static ?string $model = Repair::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-wrench';
+    protected static ?string $navigationGroup = 'Repairs';
+ 
+    public static function getNavigationBadge(): ?string
+{
+    return static::getModel()::where('status','Open')->count();
+}
 
     public static function form(Form $form): Form
     {
@@ -124,4 +130,8 @@ class RepairsResource extends Resource
             'edit' => Pages\EditRepairs::route('/{record}/edit'),
         ];
     }
+
+    
+
+    
 }

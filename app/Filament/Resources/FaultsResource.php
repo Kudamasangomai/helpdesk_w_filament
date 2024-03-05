@@ -18,7 +18,8 @@ class FaultsResource extends Resource
 {
     protected static ?string $model = fault::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-tag';
+    protected static ?string $navigationGroup = 'Repairs';
 
     public static function form(Form $form): Form
     {
