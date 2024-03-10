@@ -2,9 +2,10 @@
 
 namespace App\Filament\Resources\RepairsResource\Pages;
 
-use App\Filament\Resources\RepairsResource;
 use Filament\Actions;
+use App\Enums\RepairStatus;
 use Filament\Resources\Pages\CreateRecord;
+use App\Filament\Resources\RepairsResource;
 
 class CreateRepairs extends CreateRecord
 {
@@ -15,6 +16,12 @@ class CreateRepairs extends CreateRecord
         $data['user_id'] = auth()->id();
         $data['workdone'] = 'none';
         $data['assigneduser_id'] = 0;
+        $data['status'] = RepairStatus::Open->value;
         return $data;
+    }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
     }
 }
