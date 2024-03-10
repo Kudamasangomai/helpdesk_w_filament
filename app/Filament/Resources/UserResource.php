@@ -53,7 +53,7 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                 ->searchable(),
                 Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('is_admin'),
+                Tables\Columns\ToggleColumn::make('is_admin'),
                 Tables\Columns\TextColumn::make('created_at')           
                 ->sortable(),
             ])
