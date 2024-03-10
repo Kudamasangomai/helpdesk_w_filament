@@ -17,10 +17,13 @@ use Filament\Actions\SelectAction;
 use Illuminate\Support\HtmlString;
 use Filament\Actions\RestoreAction;
 use Filament\Tables\Actions\Action;
+use Filament\Tables\Filters\Filter;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Actions;
+use Filament\Support\Enums\ActionSize;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Notifications\Notification;
+use Filament\Tables\Actions\ActionGroup;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\RepairsResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -93,10 +96,11 @@ class RepairsResource extends Resource
                     ->label('Assigned To')
                     ->default('Not Assinged.')
                     ->searchable(),
-                // TextColumn::make('created_at')
+              
             ])
             ->filters([
-                //
+                Filter::make('Completed Repairs')
+                ->query(fn (Builder $query): Builder => $query->where('status', 'Completed'))
             ])
             ->toggleColumnsTriggerAction(
                 fn (Action $action) => $action
@@ -104,8 +108,9 @@ class RepairsResource extends Resource
                     ->label('Toggle columns'),
             )
             ->actions([
+                ActionGroup::make([
                 Action::make('Assign user')
-                    ->label('')
+                    ->label('Assign User')
                     ->icon('heroicon-o-user-plus')
                     ->form([
                         Select::make('assigneduser_id')
@@ -123,11 +128,12 @@ class RepairsResource extends Resource
                             ->success()
                             ->send();
                     }),
-                Tables\Actions\ViewAction::make()->label(''),
-                Tables\Actions\EditAction::make()->label(''),
-                Tables\Actions\DeleteAction::make()->label(''),
+                Tables\Actions\ViewAction::make()->label('View'),
+                Tables\Actions\EditAction::make()->label('Edit'),
+                Tables\Actions\DeleteAction::make()->label('Delete'),
 
-
+            ])->tooltip('Actions')
+            ->size(ActionSize::ExtraSmall),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
