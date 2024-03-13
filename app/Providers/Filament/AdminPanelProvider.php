@@ -2,9 +2,12 @@
 
 namespace App\Providers\Filament;
 
+use App\Livewire\UserRepairs;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\Widgets;
+use Livewire\Livewire;
+use Livewire\UserRepair;
 use Filament\PanelProvider;
 use Filament\Navigation\MenuItem;
 use Filament\Support\Colors\Color;
@@ -61,6 +64,7 @@ class AdminPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
                 Pages\Dashboard::class,
+               
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([

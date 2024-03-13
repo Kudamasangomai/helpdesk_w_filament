@@ -11,20 +11,17 @@ class RepairPolicy
     /**
      * Determine whether the user can view any models.
      */
-    // public function viewAny(User $user)
-    // {
-    //     return $user->is_admin; 
-    // }
+    public function viewAny(User $user)
+    {
+        return $user; 
+    }
 
     /**
      * Determine whether the user can view the model.
      */
     public function view(User $user)
     {
-        // if ($user->is_admin()) {
-        //     return true;
-        // }
-        // return null;
+  //
     }
 
     /**

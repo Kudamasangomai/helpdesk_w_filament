@@ -18,9 +18,11 @@ use Illuminate\Support\HtmlString;
 use Filament\Actions\RestoreAction;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Filters\Filter;
+use App\Livewire\Repair\ListRepairs;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Actions;
 use Filament\Support\Enums\ActionSize;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Notifications\Notification;
 use Filament\Tables\Actions\ActionGroup;
@@ -71,6 +73,7 @@ class RepairsResource extends Resource
 
             ]);
     }
+    
 
     public static function table(Table $table): Table
     {
@@ -128,6 +131,7 @@ class RepairsResource extends Resource
                             ->success()
                             ->send();
                     }),
+                
                 Tables\Actions\ViewAction::make()->label('View'),
                 Tables\Actions\EditAction::make()->label('Edit'),
                 Tables\Actions\DeleteAction::make()->label('Delete'),
